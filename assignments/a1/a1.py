@@ -6,8 +6,7 @@ nltk.download('gutenberg')
 from sklearn.feature_extraction.text import TfidfVectorizer
 import collections
 
-# Task 1 (1 mark)
-import collections
+# Task 1 (2 marks)
 def count_pos(document, pos):
     """Return the number of occurrences of words with a given part of speech. To find the part of speech, use 
     NLTK's "Universal" tag set. To find the words of the document, use NLTK's sent_tokenize and word_tokenize.
@@ -18,7 +17,7 @@ def count_pos(document, pos):
     """
     return 0
 
-# Task 2 (1 mark)
+# Task 2 (2 marks)
 def get_top_stem_bigrams(document, n):
     """Return the n most frequent bigrams of stems. Return the list sorted in descending order of frequency.
     The stems of words in different sentences cannot form a bigram. To stem a word, use NLTK's Porter stemmer.
@@ -31,7 +30,7 @@ def get_top_stem_bigrams(document, n):
     return []
 
 
-# Task 3 (1 mark)
+# Task 3 (2 marks)
 def get_same_stem(document, word):
     """Return the list of words that have the same stem as the word given, and their frequencies. 
     To find the stem, use NLTK's Porter stemmer. To find the words of the document, use NLTK's 
@@ -43,7 +42,7 @@ def get_same_stem(document, word):
     """
     return []
 
-# Task 4 (1 mark)
+# Task 4 (2 marks)
 def most_frequent_after_pos(document, pos):
     """Return the most frequent word after a given part of speech, and its frequency. Do not consider words
     that occur in the next sentence after the given part of speech.
@@ -55,7 +54,7 @@ def most_frequent_after_pos(document, pos):
     """
     return []
 
-# Task 5 (1 mark)
+# Task 5 (2 marks)
 def get_word_tfidf(text):
     """Return the tf.idf of the words given in the text. If a word does not have tf.idf information or is zero, 
     then do not return its tf.idf. The reference for computing tf.idf is the list of documents from the NLTK 
