@@ -48,9 +48,9 @@ def most_frequent_after_pos(document, pos):
     that occur in the next sentence after the given part of speech.
     To find the part of speech, use NLTK's "Universal" tagset.
     >>> most_frequent_after_pos('austen-emma.txt','VERB')
-    [('was', 2383)]
+    [('not', 1932)]
     >>> most_frequent_after_pos('austen-sense.txt','NOUN')
-    [('Elinor', 673)]
+    [(',', 5310)]
     """
     return []
 
