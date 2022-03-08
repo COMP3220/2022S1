@@ -9,10 +9,9 @@ dependencies:
   - nltk
   - numpy
   - pandas
-  - rise
   - scikit-learn
   - scipy
   - pip
   - pip:
-      - git+git://github.com/mkrphys/ipython-tikzmagic.git
+      - tensorflow
 
