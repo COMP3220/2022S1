@@ -15,7 +15,21 @@ def count_pos(document, pos):
     >>> count_pos('austen-sense.txt', 'VERB')
     25074
     """
+
+    rawf = nltk.corpus.gutenberg.raw(document)
+    sentens = [nltk.word_tokenize(s) for s in nltk.sent_tokenize(rawf)]
+    tagged = nltk.pos_tag_sents(sentens,tagset="universal")
+    pos_c = []
+    for sentense in tagged:
+        for words in sentense:
+            pos_c.append(words[1])
+    counter = collections.Counter(pos_c)
+    store_c = counter.most_common()
+    for r in store_c:
+        if r[0]==pos:
+            return r[1]
     return 0
+    
 
 # Task 2 (2 marks)
 def get_top_stem_bigrams(document, n):
@@ -27,7 +41,23 @@ def get_top_stem_bigrams(document, n):
     >>> get_top_stem_bigrams('austen-sense.txt',4)
     [(',', 'and'), ('.', "''"), (';', 'and'), (',', "''")]
     """
-    return []
+    nltk.download('averaged_perceptron_tagger')
+    nltk.download('universal_tagset')
+    raw = nltk.corpus.gutenberg.raw(document)
+    sents = [nltk.word_tokenize(s) for s in nltk.sent_tokenize(raw)]
+    stemmer = nltk.PorterStemmer()
+    stems = []
+    for s in sents:
+        for w in s:
+            stems.append(stemmer.stem(w))
+    bigrams = nltk.bigrams(stems)
+    bigrams_counter = collections.Counter(bigrams)
+    nbig = []
+    for ans in bigrams_counter.most_common(n):
+        nbig.append(ans[0])
+    
+    return nbig
+
 
 
 # Task 3 (2 marks)
@@ -40,7 +70,18 @@ def get_same_stem(document, word):
     >>> get_same_stem('austen-sense.txt','respect')[:5]
     [('respect', 22), ('respectability', 1), ('respectable', 14), ('respectably', 1), ('respected', 3)]
     """
-    return []
+    rawf = nltk.corpus.gutenberg.raw(document)
+    sentens = [nltk.word_tokenize(s) for s in nltk.sent_tokenize(rawf)]
+    stemmer = nltk.PorterStemmer()
+    stem = []
+    for sen in sentens:
+        for words in sen:
+            stemmed = stemmer.stem(words)
+            if stemmed==word:
+                stem.append(words)
+
+    counter_sort = sorted(collections.Counter(stem).items())
+    return counter_sort
 
 # Task 4 (2 marks)
 def most_frequent_after_pos(document, pos):
@@ -52,7 +93,17 @@ def most_frequent_after_pos(document, pos):
     >>> most_frequent_after_pos('austen-sense.txt','NOUN')
     [(',', 5310)]
     """
-    return []
+    nltk.download('averaged_perceptron_tagger')
+    nltk.download('universal_tagset')
+    rawf = nltk.corpus.gutenberg.raw(document)
+    sentens = [nltk.word_tokenize(s) for s in nltk.sent_tokenize(rawf)]
+    taggeds = nltk.pos_tag_sents(sentens,tagset="universal")
+    filtered_pos = []
+    for s in taggeds:
+        bigrams = nltk.bigrams(s)
+        filtered_pos += [w2 for (w1,v1), (w2,v2) in bigrams if v1==pos]
+    c = collections.Counter(filtered_pos)
+    return c.most_common(1)
 
 # Task 5 (2 marks)
 def get_word_tfidf(text):
@@ -66,8 +117,17 @@ def get_word_tfidf(text):
     >>> get_word_tfidf('Brutus is a honourable person')
     [('brutus', 0.8405129362379974), ('honourable', 0.4310718596448824), ('person', 0.32819971943754456)]
     """
-    return []
+    import pandas as pd
+    from nltk.corpus import stopwords
+    TfidfVectorizer=TfidfVectorizer(use_idf=True)
 
+    sentences = []
+    for i in text.index:
+        sentences.append(text.index[i])
+    
+    tfIdf = TfidfVectorizer.fit_transform(sentences)
+  
+    return []
 
 # DO NOT MODIFY THE CODE BELOW
 if __name__ == "__main__":
