@@ -43,20 +43,20 @@ def get_top_stem_bigrams(document, n):
     """
     nltk.download('averaged_perceptron_tagger')
     nltk.download('universal_tagset')
-    raw = nltk.corpus.gutenberg.raw(document)
-    sents = [nltk.word_tokenize(s) for s in nltk.sent_tokenize(raw)]
+    rawf = nltk.corpus.gutenberg.raw(document)
+    sentens = [nltk.word_tokenize(s) for s in nltk.sent_tokenize(rawf)]
     stemmer = nltk.PorterStemmer()
     stems = []
-    for s in sents:
-        for w in s:
-            stems.append(stemmer.stem(w))
+    for sen in sentens:
+        for word in sen:
+            stems.append(stemmer.stem(word))
     bigrams = nltk.bigrams(stems)
     bigrams_counter = collections.Counter(bigrams)
-    nbig = []
-    for ans in bigrams_counter.most_common(n):
-        nbig.append(ans[0])
+    big_store = []
+    for result in bigrams_counter.most_common(n):
+        big_store.append(result[0])
     
-    return nbig
+    return big_store
 
 
 
@@ -121,11 +121,7 @@ def get_word_tfidf(text):
     from nltk.corpus import stopwords
     TfidfVectorizer=TfidfVectorizer(use_idf=True)
 
-    sentences = []
-    for i in text.index:
-        sentences.append(text.index[i])
     
-    tfIdf = TfidfVectorizer.fit_transform(sentences)
   
     return []
 

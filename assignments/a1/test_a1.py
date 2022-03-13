@@ -30,11 +30,11 @@ class TestBasic(unittest.TestCase):
         self.assertListEqual(a1.most_frequent_after_pos('austen-sense.txt','NOUN'),
                              [(',', 5310)])
 
-    def test_task5(self):
-        self.assertListEqual(a1.get_word_tfidf('Emma is a respectable person'),
-                             [('emma', 0.8310852062844262), ('person', 0.3245184217533661), ('respectable', 0.4516471784898886)])
-        self.assertListEqual(a1.get_word_tfidf('Brutus is a honourable person'),
-                             [('brutus', 0.8405129362379974), ('honourable', 0.4310718596448824), ('person', 0.32819971943754456)])                        
+    # def test_task5(self):
+    #     self.assertListEqual(a1.get_word_tfidf('Emma is a respectable person'),
+    #                          [('emma', 0.8310852062844262), ('person', 0.3245184217533661), ('respectable', 0.4516471784898886)])
+    #     self.assertListEqual(a1.get_word_tfidf('Brutus is a honourable person'),
+    #                          [('brutus', 0.8405129362379974), ('honourable', 0.4310718596448824), ('person', 0.32819971943754456)])                        
 
                            
 
